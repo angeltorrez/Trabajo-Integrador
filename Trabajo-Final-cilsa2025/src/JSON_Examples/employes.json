@@ -1,0 +1,37 @@
+[
+    {
+        "legajo": 1001,
+        "nombre": "Martina López",
+        "email": "martina.lopez@ejemplo.com",
+        "password":"12345",
+        "rol": "Desarrolladora Frontend"
+    },
+    {
+        "legajo": 1002,
+        "nombre": "Santiago Pérez",
+        "email": "santiago.perez@ejemplo.com",
+        "password":"12345",
+        "rol": "Desarrollador Backend"
+    },
+    {
+        "legajo": 1003,
+        "nombre": "Valentina García",
+        "email": "valentina.garcia@ejemplo.com",
+        "password":"12345",
+        "rol": "Desarrolladora Full Stack"
+    },
+    {
+        "legajo": 1004,
+        "nombre": "Diego Fernández",
+        "email": "diego.fernandez@ejemplo.com",
+        "password":"12345",
+        "rol": "Ingeniero QA"
+    },
+    {
+        "legajo": 1005,
+        "nombre": "Lucía Martínez",
+        "email": "lucia.martinez@ejemplo.com",
+        "password":"12345",
+        "rol": "DevOps"
+    }
+]
