@@ -6,6 +6,11 @@ const TodoSchema = new mongoose.Schema({
         type:Boolean,
         default:false
     }
+    ,
+    role: {
+        type: String,
+        default: ''
+    }
 })
 
 const TodoModel = mongoose.model('todos',TodoSchema)
