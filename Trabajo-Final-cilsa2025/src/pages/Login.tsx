@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from '../components/navbar';
+import ToggleDark from "../components/toggleDark";
 
 axios.defaults.withCredentials = true;
 
@@ -27,6 +28,14 @@ const Login = () => {
         setLoading(true);
         try {
         await axios.post("http://localhost:3001/login", { legajo: legajoTrim, password: passwordTrim });
+            // Broadcast login to other tabs
+            if ('BroadcastChannel' in window) {
+                try {
+                    new BroadcastChannel('auth-change').postMessage({ login: true });
+                } catch (e) {
+                    // BroadcastChannel not supported
+                }
+            }
             // Si llega aquí, el servidor respondió 2xx. Redirigir al Dashboard.
             navigate("/Dashboard");
         } catch (err: any) {
@@ -42,14 +51,14 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <Navbar />
-
-            <div className="flex items-center justify-center py-12 px-4">
-                <div className="max-w-md w-full bg-white shadow-md rounded-lg p-8">
-                    <h1 className="text-2xl font-semibold text-gray-800 mb-4">Acceso al sistema</h1>
-                    <p className="text-sm text-gray-500 mb-6">Ingrese sus credenciales de la compañía para continuar.</p>
-
+        <div className="min-h-screen flex items-center justify-center bg-app py-12 px-4">
+            <div className="fixed top-4 right-4 z-50">
+                <ToggleDark />
+            </div>
+            <div className="max-w-md w-full card rounded-lg p-8">
+                <h1 className="text-2xl font-semibold text-app mb-4">Acceso al sistema</h1>
+                <p className="text-sm muted mb-6">Ingrese sus credenciales de la compañía para continuar.</p>
+                <div className="space-y-4">
                     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                     <div>
                         <label htmlFor="legajo" className="block text-sm font-medium text-gray-700">Legajo</label>
@@ -81,11 +90,11 @@ const Login = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-60"
+                            className="inline-flex items-center px-4 py-2 btn-primary rounded-md disabled:opacity-60"
                         >
                             {loading ? "Ingresando..." : "Ingresar"}
                         </button>
-                        <a href="/help" className="text-sm text-indigo-600 hover:underline">Ayuda</a>
+                        <a href="/help" className="text-sm text-primary hover:underline">Ayuda</a>
                     </div>
 
                     {error && (

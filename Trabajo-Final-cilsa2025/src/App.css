@@ -1,1 +1,83 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme variables: light (default) and dark (when .dark is present on <html>) */
+:root {
+	--color-primary: #1E40AF;
+	--color-secondary: #F59E0B;
+	--color-background: #FFFFFF;
+	--color-surface: #FFFFFF;
+	--color-muted: #6B7280;
+	--color-text: #111827;
+	--card-shadow: 0 1px 3px rgba(16,24,40,0.04), 0 1px 2px rgba(16,24,40,0.06);
+}
+
+.dark {
+	--color-primary: #2563EB;
+	--color-secondary: #FBBF24;
+	--color-background: #0F172A; /* slate-900 */
+	--color-surface: #0B1220;
+	--color-muted: #9CA3AF;
+	--color-text: #E6EEF8;
+	--card-shadow: 0 4px 14px rgba(2,6,23,0.6);
+}
+
+/* Apply base colors to document body and common elements */
+html, body, #root {
+	height: 100%;
+}
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* Reusable UI tokens */
+.bg-app {
+	background-color: var(--color-background) !important;
+}
+.text-app {
+	color: var(--color-text) !important;
+}
+.card {
+	background-color: var(--color-surface);
+	color: var(--color-text);
+	box-shadow: var(--card-shadow);
+	transition: background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+}
+.panel {
+	background-color: rgba(99,102,241,0.06);
+}
+.btn-primary {
+	background-color: var(--color-primary);
+	color: white;
+}
+.btn-primary:hover { filter: brightness(0.95); }
+.btn-secondary {
+	background-color: transparent;
+	color: var(--color-text);
+	border: 1px solid rgba(15,23,42,0.06);
+}
+
+/* Dark variant for secondary buttons */
+.dark .btn-secondary {
+	border: 1px solid rgba(255,255,255,0.08);
+	background-color: rgba(255,255,255,0.02);
+}
+
+/* Additional toggle helpers for glow */
+.toggle-glow {
+	transition: box-shadow 280ms ease, transform 280ms ease;
+}
+
+/* Small helper for muted text */
+.muted { color: var(--color-muted); }
+
+/* Make sure components that used explicit Tailwind light colors get a better default */
+.card-plain { background-color: var(--color-surface); }
+
+/* Primary text color utility that follows theme */
+.text-primary { color: var(--color-primary); }
+.text-primary:hover { filter: brightness(0.95); }

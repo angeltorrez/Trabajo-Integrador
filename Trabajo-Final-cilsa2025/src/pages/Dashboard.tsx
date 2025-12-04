@@ -69,13 +69,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app">
       <Navbar legajo={legajo} rol={rol} />
 
       <main className="max-w-6xl mx-auto py-8 px-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-gray-800">Panel de Tareas</h1>
-          <p className="text-sm text-gray-500">{message}</p>
+          <h1 className="text-2xl font-semibold text-app">Panel de Tareas</h1>
+          <p className="text-sm muted">{message}</p>
         </div>
 
         <section className="mb-6">
@@ -84,28 +84,28 @@ const Dashboard = () => {
 
         <section>
           {loading ? (
-            <div className="text-gray-600">Cargando tareas...</div>
+            <div className="muted">Cargando tareas...</div>
           ) : error ? (
             <div className="text-red-600">{error}</div>
           ) : todos.length === 0 ? (
-            <div className="text-gray-600">No hay tareas para mostrar</div>
+            <div className="muted">No hay tareas para mostrar</div>
           ) : (
             <ul className="space-y-3">
               {todos.map((todo) => (
-                <li key={todo._id} className="flex items-center justify-between bg-white p-4 rounded-md shadow-sm">
+                <li key={todo._id} className="flex items-center justify-between card-plain p-4 rounded-md">
                   <div className="flex items-center space-x-3">
                     <button
                       onClick={() => handleToggle(todo._id)}
                       aria-label={todo.completed ? "Marcar como pendiente" : "Marcar como completado"}
-                      className="text-indigo-600 hover:text-indigo-800 cursor-pointer"
+                      className="text-primary hover:brightness-90 cursor-pointer"
                     >
                       {todo.completed ? <BsCheckCircleFill className="h-6 w-6" /> : <BsCircleFill className="h-6 w-6" />}
                     </button>
-                    <p className={todo.completed ? "text-gray-500 line-through" : "text-gray-800"}>{todo.task}</p>
+                    <p className={todo.completed ? "muted line-through" : "text-app"}>{todo.task}</p>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">{todo.role || rol || '—'}</span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full" style={{backgroundColor: 'rgba(99,102,241,0.06)'}}>{todo.role || rol || '—'}</span>
                     <button
                       onClick={() => handleDelete(todo._id)}
                       className="text-red-600 hover:text-red-800 cursor-pointer"

@@ -21,7 +21,7 @@ app.use(
 app.use(json());
 app.use(cookieParser());
 
-// Connect to MongoDB with basic logging
+// Connect to MongoDB
 connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));

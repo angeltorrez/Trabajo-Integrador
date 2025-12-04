@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/navbar';
+import ToggleDark from '../components/toggleDark';
 
 const Help = () => {
     return (
-        <div className="min-h-screen bg-gray-50">
-            <Navbar legajo={''} rol={''} />
+        <div className="min-h-screen bg-app">
+                <Navbar legajo={''} rol={''} />
 
-            <div className="flex items-center justify-center py-12 px-4">
-                <div className="max-w-3xl w-full bg-white rounded-lg shadow-md p-8">
-                    <h1 className="text-2xl font-semibold text-gray-800">Solicitud de Ayuda</h1>
-                    <p className="mt-2 text-sm text-gray-600">Rellene este formulario y un administrador se pondrá en contacto con usted.</p>
+                <div className="flex items-center justify-center py-12 px-4">
+                    <div className="fixed top-4 right-4 z-50">
+                        <ToggleDark />
+                    </div>
+                    <div className="max-w-3xl w-full card rounded-lg p-8">
+                        <h1 className="text-2xl font-semibold text-app">Solicitud de Ayuda</h1>
+                        <p className="mt-2 text-sm muted">Rellene este formulario y un administrador se pondrá en contacto con usted.</p>
 
-                    <HelpForm />
+                        <HelpForm />
+                    </div>
                 </div>
             </div>
-        </div>
     );
 };
 
@@ -61,40 +65,40 @@ const HelpForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Correo corporativo</label>
+                <label htmlFor="email" className="block text-sm font-medium muted">Correo corporativo</label>
                 <input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 card-plain"
                     placeholder="tu.nombre@empresa.com"
                     required
                 />
             </div>
 
             <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Descripción del problema</label>
+                <label htmlFor="description" className="block text-sm font-medium muted">Descripción del problema</label>
                 <textarea
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     rows={5}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 card-plain"
                     placeholder="Describa lo que sucede, pasos para reproducir y cualquier información relevante"
                     required
                 />
             </div>
 
             <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-500">Un administrador revisará su solicitud en breve.</div>
+                <div className="text-sm muted">Un administrador revisará su solicitud en breve.</div>
                 <div className="flex items-center space-x-3">
                     {error && <div className="text-sm text-red-600">{error}</div>}
                     {success && <div className="text-sm text-green-600">{success}</div>}
                     <button
                         type="submit"
                         disabled={loading}
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-60"
+                        className="px-4 py-2 btn-primary rounded-md disabled:opacity-60"
                     >
                         {loading ? 'Enviando...' : 'Enviar solicitud'}
                     </button>
