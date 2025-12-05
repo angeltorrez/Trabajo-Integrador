@@ -12,9 +12,24 @@ const app = express();
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 const PORT = Number(process.env.PORT) || 3001;
 
+// CORS configuration - allow multiple frontend URLs
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  FRONTEND_URL,
+  'https://trabajo-integrador-ashen.vercel.app',
+];
+
 app.use(
   cors({
-    origin: [FRONTEND_URL, 'https://trabajo-integrador-cmzfc51u5-angels-projects-9d35d66a.vercel.app'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
