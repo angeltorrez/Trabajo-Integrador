@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "./config/api";
 
 type Props = {
   onAdd?: (todo: { _id: string; task: string; completed: boolean; role?: string }) => void;
@@ -20,7 +21,7 @@ const Create = ({ onAdd }: Props) => {
 
     try {
       setLoading(true);
-      const resp = await axios.post("http://localhost:3001/add", { task: trimmed });
+      const resp = await axios.post(`${API_BASE_URL}/add`, { task: trimmed });
       const created = resp.data;
       if (onAdd) {
         onAdd({ _id: String(created._id), task: created.task, completed: !!created.completed, role: created.role });

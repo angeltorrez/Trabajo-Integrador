@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ToggleDark from "../components/toggleDark";
+import API_BASE_URL from "../config/api";
 
 axios.defaults.withCredentials = true;
 
@@ -26,7 +27,7 @@ const Login = () => {
 
         setLoading(true);
         try {
-        await axios.post("http://localhost:3001/login", { legajo: legajoTrim, password: passwordTrim });
+        await axios.post(`${API_BASE_URL}/login`, { legajo: legajoTrim, password: passwordTrim });
             // Broadcast login to other tabs
             if ('BroadcastChannel' in window) {
                 try {

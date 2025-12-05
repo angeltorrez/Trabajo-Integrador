@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/navbar';
 import ToggleDark from '../components/toggleDark';
+import API_BASE_URL from '../config/api';
 
 const Help = () => {
     return (
@@ -50,7 +51,7 @@ const HelpForm: React.FC = () => {
 
         try {
             setLoading(true);
-            await axios.post('http://localhost:3001/help', { email, description });
+            await axios.post(`${API_BASE_URL}/help`, { email, description });
             setSuccess('Su solicitud fue enviada. Un administrador se contactará pronto.');
             setEmail('');
             setDescription('');

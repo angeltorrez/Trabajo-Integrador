@@ -1,4 +1,5 @@
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 import Create from "../Create";
 import { useEffect, useState } from "react";
 import { BsCheckCircleFill, BsCircleFill, BsTrashFill } from "react-icons/bs";
@@ -23,7 +24,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const authResp = await axios.get("http://localhost:3001/dashboard");
+        const authResp = await axios.get(`${API_BASE_URL}/dashboard`);
         if (authResp.data?.valid) {
           setMessage(authResp.data.message || "");
           setLegajo(authResp.data.legajo || "");
@@ -33,7 +34,7 @@ const Dashboard = () => {
           return;
         }
 
-        const todosResp = await axios.get("http://localhost:3001/get");
+        const todosResp = await axios.get(`${API_BASE_URL}/get`);
         setTodos(
           Array.isArray(todosResp.data)
             ? todosResp.data.map((t: any) => ({ _id: String(t._id), task: t.task, completed: !!t.completed, role: t.role || '' }))
@@ -52,7 +53,7 @@ const Dashboard = () => {
 
   const handleToggle = async (id: string) => {
     try {
-      await axios.put(`http://localhost:3001/update/${id}`);
+      await axios.put(`${API_BASE_URL}/update/${id}`);
       setTodos((prev) => prev.map((t) => (t._id === id ? { ...t, completed: true } : t)));
     } catch (err) {
       console.error("Error updating todo:", err);
@@ -61,7 +62,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3001/delete/${id}`);
+      await axios.delete(`${API_BASE_URL}/delete/${id}`);
       setTodos((prev) => prev.filter((t) => t._id !== id));
     } catch (err) {
       console.error("Error deleting todo:", err);
