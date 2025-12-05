@@ -14,7 +14,7 @@ const PORT = Number(process.env.PORT) || 3001;
 
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: [FRONTEND_URL, 'https://trabajo-integrador-cmzfc51u5-angels-projects-9d35d66a.vercel.app'],
     credentials: true,
   })
 );
