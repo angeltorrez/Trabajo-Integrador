@@ -13,8 +13,9 @@
     }
   ],
   "env": {
-    "MONGO_URI": "mongodb+srv://root:root@clustertest1.93hj08z.mongodb.net/TodoApp",
-    "JWT_SECRET": "@jwt_secret",
+    "MONGO_URI": "@mongo_uri",
+    "ACCESS_TOKEN_SECRET": "@jwt_access_secret",
+    "REFRESH_TOKEN_SECRET": "@jwt_refresh_secret",
     "NODE_ENV": "production"
   }
 }
