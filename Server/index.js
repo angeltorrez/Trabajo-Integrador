@@ -17,7 +17,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   FRONTEND_URL,
-  'https://trabajo-integrador-ashen.vercel.app',
+  'trabajo-integrador-r6qb4bbj3-angels-projects-9d35d66a.vercel.app',
 ];
 
 app.use(
