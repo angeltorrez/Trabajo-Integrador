@@ -1,7 +1,6 @@
 import express, { json } from 'express';
 import { connect } from 'mongoose';
 import cors from 'cors';
-import { MONGO_URI } from './config.js';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
@@ -9,6 +8,7 @@ dotenv.config();
 
 const app = express();
 
+const MONGO_URI = process.env.MONGO_URI;
 const DEV_URL = 'http://localhost:5173';
 const PROD_URL = process.env.FRONTEND_URL;
 const PORT = Number(process.env.PORT) || 3001;
@@ -29,7 +29,7 @@ app.use(json());
 app.use(cookieParser());
 
 // Connect to MongoDB
-connect(MONGO_URI)
+connect(MONGO_URI )
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
