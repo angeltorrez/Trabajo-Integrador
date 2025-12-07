@@ -18,10 +18,10 @@ const allowedOrigins = [
   DEV_URL,
   PROD_URL,
 ];
-
+app.send(DEV_URL);
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "trabajo-integrador-1eu7.vercel.app",
     credentials: true,
   })
 );
