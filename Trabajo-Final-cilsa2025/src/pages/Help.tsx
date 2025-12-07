@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/navbar';
-import ToggleDark from '../components/toggleDark';
 import API_BASE_URL from '../config/api';
 
 const Help = () => {
+    console.log('API_BASE_URL:', API_BASE_URL);
     return (
         <div className="min-h-screen bg-app">
                 <Navbar legajo={''} rol={''} />
 
                 <div className="flex items-center justify-center py-12 px-4">
-                    <div className="fixed top-4 right-4 z-50">
-                        <ToggleDark />
-                    </div>
+                    
                     <div className="max-w-3xl w-full card rounded-lg p-8">
                         <h1 className="text-2xl font-semibold text-app">Solicitud de Ayuda</h1>
                         <p className="mt-2 text-sm muted">Rellene este formulario y un administrador se pondrá en contacto con usted.</p>

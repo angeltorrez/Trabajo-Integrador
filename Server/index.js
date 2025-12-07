@@ -9,27 +9,19 @@ dotenv.config();
 
 const app = express();
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const DEV_URL = 'http://localhost:5173';
+const PROD_URL = process.env.FRONTEND_URL;
 const PORT = Number(process.env.PORT) || 3001;
 
 // CORS configuration - allow multiple frontend URLs
 const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  FRONTEND_URL,
-  'https://vercel.com/angels-projects-9d35d66a/trabajo-integrador',
+  DEV_URL,
+  PROD_URL,
 ];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
   })
 );
