@@ -21,7 +21,7 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://trabajo-integrador-ashen.vercel.app",
     credentials: true,
   })
 );
