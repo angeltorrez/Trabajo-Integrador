@@ -3,8 +3,10 @@ import jwt from 'jsonwebtoken';
 import EmployesModel from '../models/Employes.js';
 import { asyncHandler } from '../utils.js';
 
+import dotenv from 'dotenv';
 const router = express.Router();
 
+dotenv.config();
 // Verify access token; if missing, try refresh token and issue new access token
 const verifyToken = async (req, res, next) => {
   try {

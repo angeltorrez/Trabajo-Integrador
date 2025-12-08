@@ -16,7 +16,7 @@ const PORT = Number(process.env.PORT) || 3001;
 app.use(
   cors({
     origin: DEV_URL,
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "PUT", "DELETE","UPDATE"],
     credentials: true,
   })
 );
@@ -24,7 +24,7 @@ app.use(json());
 app.use(cookieParser());
 
 // Connect to MongoDB
-connect(MONGO_URI )
+connect("mongodb+srv://root:root@clustertest1.93hj08z.mongodb.net/TodoApp" )
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
