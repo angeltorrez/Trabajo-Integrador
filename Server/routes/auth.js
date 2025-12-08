@@ -2,6 +2,9 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import EmployesModel from '../models/Employes.js';
 import { asyncHandler } from '../utils.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = express.Router();
 
