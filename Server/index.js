@@ -18,7 +18,7 @@ const allowedOrigins = [
   DEV_URL,
   PROD_URL,
 ];
-app.send(DEV_URL);
+
 app.use(
   cors({
     origin: "https://trabajo-integrador-ashen.vercel.app",
