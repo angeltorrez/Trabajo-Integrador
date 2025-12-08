@@ -4,6 +4,7 @@ import Navbar from '../components/navbar';
 import API_BASE_URL from '../config/api';
 
 const Help = () => {
+
     return (
         <div className="min-h-screen bg-app">
                 <Navbar legajo={''} rol={''} />
