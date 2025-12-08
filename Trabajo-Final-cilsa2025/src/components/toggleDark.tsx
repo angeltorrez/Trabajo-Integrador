@@ -58,7 +58,7 @@ const ToggleDark = () => {
             aria-pressed={isDark}
             aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
             onClick={toggle}
-            className="relative inline-flex items-center w-14 h-8 rounded-full p-1 transition-colors duration-300 focus:outline-none"
+            className="relative cursor-pointer inline-flex items-center w-14 h-8 rounded-full p-1 transition-colors duration-300 focus:outline-none"
             title="Cambiar tema"
         >
             <span
