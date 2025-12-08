@@ -3,3 +3,4 @@
 // En desarrollo usar localhost:3001
 export const API_BASE_URL = "https://trabajo-integrador-1eu7.vercel.app";
 
+export default API_BASE_URL;

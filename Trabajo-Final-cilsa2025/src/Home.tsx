@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ToggleDark from "./components/toggleDark";
-import {API_BASE_URL} from "./config/api";
+import API_BASE_URL from "./config/api";
 
 const Home = () => {
     const [isAuth, setIsAuth] = useState(false);
