@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/navbar';
-import API_BASE_URL from '../config/api';
+import {API_BASE_URL} from '../config/api';
 
 const Help = () => {
     console.log('API_BASE_URL:', API_BASE_URL);
