@@ -24,7 +24,7 @@ const verifyToken = async (req, res, next) => {
 
     const decodedRefresh = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
     const newAccessToken = jwt.sign({ legajo: decodedRefresh.legajo, rol: decodedRefresh.rol }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1m' });
-    res.cookie('accessToken', newAccessToken, { httpOnly: true, maxAge: 60 * 1000, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' });
+    res.cookie('accessToken', newAccessToken, { httpOnly: true, maxAge: 60 * 1000, sameSite: 'lax' });
     req.legajo = decodedRefresh.legajo;
     req.rol = decodedRefresh.rol;
     return next();
@@ -53,8 +53,8 @@ router.post(
     const accessToken = jwt.sign({ legajo: user.legajo, rol: user.rol }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1m' });
     const refreshToken = jwt.sign({ legajo: user.legajo, rol: user.rol }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '2m' });
 
-    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 60 * 1000, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' });
-    res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 2 * 60 * 1000, secure: process.env.NODE_ENV === 'production', sameSite: 'lax' });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 60 * 1000, sameSite: 'lax' });
+    res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 2 * 60 * 1000, sameSite: 'lax' });
 
     return res.json({ Login: true, message: 'Login exitoso' });
   })
@@ -64,8 +64,8 @@ router.post(
 router.post(
   '/logout',
   asyncHandler(async (req, res) => {
-    res.clearCookie('accessToken', { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' });
-    res.clearCookie('refreshToken', { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' });
+    res.clearCookie('accessToken', { httpOnly: true, sameSite: 'lax'});
+    res.clearCookie('refreshToken', { httpOnly: true, sameSite: 'lax'});
     return res.json({ logout: true });
   })
 );
