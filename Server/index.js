@@ -13,15 +13,9 @@ const DEV_URL = 'http://localhost:5173';
 const PROD_URL = process.env.FRONTEND_URL;
 const PORT = Number(process.env.PORT) || 3001;
 
-// CORS configuration - allow multiple frontend URLs
-const allowedOrigins = [
-  DEV_URL,
-  PROD_URL,
-];
-
 app.use(
   cors({
-    origin: "https://trabajo-integrador-ashen.vercel.app",
+    origin: DEV_URL,
     methods: ["POST", "GET"],
     credentials: true,
   })
